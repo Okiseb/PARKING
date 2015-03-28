@@ -1,0 +1,8 @@
+
+parking_core_home:
+    path:      /
+    defaults:  { _controller: ParkingCoreBundle:Core:index }
+
+parking_core_contact:
+    path:      /contact
+    defaults:  { _controller: ParkingCoreBundle:Core:contact }

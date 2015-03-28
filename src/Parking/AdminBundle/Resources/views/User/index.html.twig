@@ -1,0 +1,48 @@
+{% extends "ParkingAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Liste des utilisateurs</h2>
+  <a href="add" class="btn btn-primary btn-sm active" role="button">Ajouter un utilisateur</a>
+
+
+  <table class="table table-striped">
+   <thead>
+    <tr>
+        <th data-field="name" data-radio="true">Login</th>
+        <th data-field="name" data-switchable="false">Email</th>
+        <th data-field="roles">Roles</th>
+        <th data-field="column1">Dernière connexion</th>
+    </tr>
+    </thead>
+	<tbody>
+  
+  
+    {% for user in listUsers %}
+      <tr><td>
+        <a href="{{ path('parking_admin_view', {'username': user.username}) }}">
+          {{ user.username }}
+        </a>
+    	</td>
+    	<td>{{ user.email }}</td>
+    	<td>
+    	{% for role in user.roles %}
+    		{{ role }}, 
+    	{% endfor %}
+    	</td>
+    	<td>{{ user.lastLogin|date('d-m-Y H:i:s') }}</td>
+    	
+    	
+    	</tr>
+    {% else %}
+      <tr><td>Pas (encore !) d'utilisateur</td></tr>
+    {% endfor %}
+  </tbody>
+  </table>
+
+
+{% endblock %}

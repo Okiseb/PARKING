@@ -1,0 +1,38 @@
+# src/OC/PlatformBundle/Resources/config/routing.yml
+
+parking_admin_home:
+    path:      /
+    defaults:  { _controller: ParkingAdminBundle:User:index }
+
+
+parking_admin_view:
+    path:      /user/{username}
+    defaults:  { _controller: ParkingAdminBundle:User:view }
+
+
+parking_admin_view_slug:
+    path:      /{year}/{slug}.{_format}
+    defaults:  { _controller: ParkingAdminBundle:User:viewSlug, _format: html }
+    requirements:
+        year:   \d{4}
+        format: html|xml
+
+parking_admin_add:
+    path:      /add
+    defaults:  { _controller: ParkingAdminBundle:User:add }
+
+parking_admin_edit:
+    path:      /edit/{username}
+    defaults:  { _controller: ParkingAdminBundle:User:edit }
+ 
+
+parking_admin_delete:
+    path:      /delete/{username}
+    defaults:  { _controller: ParkingAdminBundle:User:delete }
+
+
+parking_admin_purge:
+    path:      /purge/{days}
+    defaults:  { _controller: ParkingAdminBundle:User:purge }
+    requirements:
+        days: \d*

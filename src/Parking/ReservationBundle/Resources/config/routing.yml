@@ -1,0 +1,3 @@
+parking_reservation_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: ParkingReservationBundle:Default:index }

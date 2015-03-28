@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% block title %}PARKING{% endblock %}</title>
+
+  {% block stylesheets %}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  {% block javascripts %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  {% endblock %}
+
+
+
+    <style type="text/css">
+    body{padding-top:100px;}
+    #preview.modal-dialog {
+	  width: 100%;
+	  height: 100%;
+	  padding: 0;
+	}
+	
+	#preview.modal-content {
+	  height: 100%;
+	  border-radius: 0;
+	}
+	
+	body {padding-top:50px;)
+	
+	
+	.avatar {
+		width: 50px;
+		height: 50px;
+		border-radius: 25px;
+	}
+	
+	
+	.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #000000;
+	}
+	
+	.footer p{
+		color:#cdcdcd;padding:10px;
+	}
+    </style>
+    {% block stylesheets2 %}
+    {% endblock %}
+    
+  {% endblock %}
+  
+  
+  <!-- HTML5 pour IE<=IE8 -->
+    <!--[if lte IE 8]>
+    <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div id="bg"></div>
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+
+
+
+
+
+	<div id="wrap">
+  
+	  <!-- Fixed navbar -->
+	  <div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+		  <div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			  <span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{{ app.request.basepath }}/app.php">PARKING Reservation</a>
+		  </div>
+		  <div class="collapse navbar-collapse">
+		  
+		  	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+		  
+			<ul class="nav navbar-nav">
+			  
+			   <li class="dropdown">
+				<a href="flux/1" class="dropdown-toggle" data-toggle="dropdown">Mes Réservations <b class="caret"></b></a>
+				 <ul class="dropdown-menu">
+				 <li><a href="#">Nouveau</a></li>
+				
+				</ul>
+			  </li>
+			  
+			   <li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ app.user.username }} <b class="caret"></b></a>
+				<ul class="dropdown-menu">
+				  <li><a href="{{ path('fos_user_profile_edit') }}">Mon profil</a></li>
+				  {% if is_granted('ROLE_ADMIN') %}
+				  	<li><a href="{{ url('parking_admin_home') }}">Admin</a></li>
+				  {% endif %}
+				  <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+				</ul>
+			  </li>
+			 
+			 </ul>
+			
+			{% else %}
+			<ul class="nav navbar-nav">
+			<li class="active"><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+			</ul>
+			{% endif %}
+			
+			
+		  </div><!--/.nav-collapse -->
+		</div>
+	  </div>
+  
+	  <!-- Begin page content -->
+	<div class="container-fluid">
+	<div class="row">
+
+{% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="alert alert-info">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Notice :</strong> {{ flashMessage }}
+    
+    </div>
+{% endfor %}
+
+	
+     
+      <div id="content" class="col-md-12">
+        {% block body %}
+        {% endblock %}
+      </div>
+    </div>
+	</div>  
+	  
+	  
+	
+</div>
+   
+   
+   
+   
+   
+<div id="footer">
+  <div class="container">
+    <p class="text-muted credit">Flux.</p>
+  </div>
+</div>
+
+
+
+
+</body>
+</html>

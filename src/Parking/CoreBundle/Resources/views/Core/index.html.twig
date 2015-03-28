@@ -1,0 +1,23 @@
+{# On utilise ici le layout général, qui se situe dans ce même CoreBundle maintenant #}
+{% extends "ParkingCoreBundle::layout.html.twig" %}
+
+{% block title %}
+  Page d'accueil - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Bienvenue sur PARKING</h2>
+
+  {# On affiche tous les messages flash dont le nom est « info » #}
+  {% for message in app.session.flashbag.get('info') %}
+    <div class="alert alert-info">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Notice :</strong> {{ message }}
+    
+    </div>
+  {% endfor %}
+
+
+
+{% endblock %}

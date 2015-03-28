@@ -1,0 +1,22 @@
+{% extends "ParkingAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Modifier un utilisateur - {{ parent() }}
+{% endblock %}
+
+{% block parking_admin_body %}
+
+  <h2>Modifier un utilisateur</h2>
+
+  {% include "ParkingAdminBundle:User:form.html.twig" %}
+
+
+
+  <p>
+    <a href="{{ path('parking_admin_view', {'username': user.username}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour
+    </a>
+  </p>
+
+{% endblock %}

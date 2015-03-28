@@ -1,0 +1,36 @@
+{% extends "ParkingAdminBundle::layout.html.twig" %}
+
+{% block title %}
+  Profile utilisateur de {{ user.username }} - {{ parent() }}
+{% endblock %}
+
+{% block parking_admin_body %}
+
+
+
+  <h2>
+    {{ user.username }}
+  </h2>
+
+
+  <div class="well" style="clear: both;">
+information utilisateur
+  </div>
+
+  
+  <p>
+    <a href="{{ path('parking_admin_home') }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à la liste
+    </a>
+    <a href="{{ path('parking_admin_edit', {'username': user.username}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-edit"></i>
+      Modifier l'utilisateur
+    </a>
+    <a href="{{ path('parking_admin_delete', {'username': user.username}) }}" class="btn btn-danger">
+      <i class="glyphicon glyphicon-trash"></i>
+      Supprimer l'utilisateur
+    </a>
+  </p>
+
+{% endblock %}

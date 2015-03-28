@@ -1,0 +1,46 @@
+{% extends "ParkingUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+{% if error %}
+<div class="alert alert-error">
+	<a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strongErrer ! </strong>{{ error.messageKey|trans(error.messageData, 'security') }}
+</div>
+{% endif %}
+
+<div class="container">
+<form class="col-md-4 col-xs-12" action="{{ path("fos_user_security_check") }}" method="post">
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+	<div class="form-group">
+    	<legend>Connexion</legend>
+  	</div>
+  	<div class="row">
+    	<div class="form-group">
+    		<label class="control-label" for="username">{{ 'security.login.username'|trans }}</label>
+    		<input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+		</div>
+	</div>
+	
+	<div class="row">
+    	<div class="form-group">	
+    		<label class="control-label" for="password">{{ 'security.login.password'|trans }}</label>
+    		<input class="form-control" type="password" id="password" name="_password" required="required" />
+		</div>
+	</div>
+	
+	<div class="row">
+    	<div class="form-group">
+    		<input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    		<label class="control-label" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+		</div>
+	</div>
+	<div class="form-group">
+    	<input class="pull-right btn btn-default" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+    </div>
+    
+</form>
+</div>
+
+{% endblock fos_user_content %}

@@ -1,0 +1,86 @@
+
+<div class="well">
+   {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+
+    {# Les erreurs générales du formulaire. #}
+    {{ form_errors(form) }}
+
+    <div class="form-group">
+      {# Génération du label. #}
+      {{ form_label(form.username, "Nom d'utilisateur", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+      {# Affichage des erreurs pour ce champ précis. #}
+      {{ form_errors(form.username) }}
+
+      <div class="col-sm-4">
+        {# Génération de l'input. #}
+        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+
+	<div class="form-group">
+      {# Génération du label. #}
+      {{ form_label(form.email, "Email", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+      {# Affichage des erreurs pour ce champ précis. #}
+      {{ form_errors(form.email) }}
+
+      <div class="col-sm-4">
+        {# Génération de l'input. #}
+        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+    
+    <div class="form-group">
+      {# Génération du label. #}
+      {{ form_label(form.enabled, "Activé", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+      {# Affichage des erreurs pour ce champ précis. #}
+      {{ form_errors(form.enabled) }}
+
+      <div class="col-sm-4">
+        {# Génération de l'input. #}
+        {{ form_widget(form.enabled, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+
+    
+    
+    {% for passwordField in form.plainPassword %}
+    <div class="form-group">
+        {{ form_label(passwordField, null, { 'label_attr': {'class': 'col-sm-3 control-label'} }) }}
+        <div class="col-sm-4">
+        {{ form_widget(passwordField, { 'attr': {'class': 'form-control'} }) }}
+        </div>
+    </div>
+	{% endfor %}
+    
+    
+     <div class="form-group">
+      {# Génération du label. #}
+      {{ form_label(form.roles, "Roles", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+      {# Affichage des erreurs pour ce champ précis. #}
+      {{ form_errors(form.roles) }}
+
+      <div class="col-sm-4">
+        {# Génération de l'input. #}
+        {{ form_widget(form.roles, {'attr': {'class': 'form-control'}}) }}
+      </div>
+    </div>
+    
+
+    
+    
+ {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+
+
+  {# Le reste des champs #}
+  {{ form_rest(form) }}
+
+ 
+  {{ form_end(form) }}
+</div>
+
+
+
